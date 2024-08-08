@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Texto con Firma</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/editor.css">
+    <style>
+        .editor-container {
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            box-shadow: 0 0 0.125rem rgba(0, 0, 0, 0.075);
+            height: 500px;
+            margin-bottom: 20px;
+        }
+        .modal-backdrop {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+    <section class="dashboard">
+        <div class="top">
+            <div class="logo-image">
+                <img src="/static/images/logo.png" alt="">
+            </div>
+            <span class="logo_name">Backup Sectur</span>
+            <i class="uil uil-bars sidebar-toggle"></i>
+            <span class="text">Secretaría De Turismo Municipal de Acapulco</span>
+            <img class="admin-panel-img" src="/static/images/turismo.png" alt="img">
+            
+        </div>
+    </section>
+
+    <div class="container mt-5">
+        
+        <div id="editor" class="editor-container"></div>
+        <button id="saveHtmlBtn" class="btn btn-primary mt-3">Guardar como HTML</button>
+        <button id="savePdfBtn" class="btn btn-secondary mt-3">Guardar como PDF</button>
+        <button id="addSignatureBtn" class="btn btn-info mt-3">Agregar Firma</button>
+
+        <!-- Modal para la contraseña -->
+        <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="passwordModalLabel">Inserte Contraseña</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password" class="form-control mb-3">
+                        <label for="signatureFile">Selecciona una imagen para la firma:</label>
+                        <input type="file" id="signatureFile" class="form-control-file" accept="image/*">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" id="confirmPasswordBtn" class="btn btn-primary">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script>
+        var quill = new Quill('#editor', {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    [{ 'font': [] }, { 'size': [] }],
+                    [{ 'header': [1, 2, false] }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ 'color': [] }, { 'background': [] }],
+                    [{ 'script': 'sub' }, { 'script': 'super' }],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
+                    [{ 'direction': 'rtl' }, { 'align': [] }],
+                    ['link', 'image', 'video', 'code-block'],
+                    ['clean']
+                ]
+            }
+        });
+
+        $(document).ready(function() {
+            $('#saveHtmlBtn').click(function() {
+                const data = quill.root.innerHTML;
+                const blob = new Blob([data], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'contenido.html';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            });
+
+            $('#savePdfBtn').click(function() {
+                const element = document.createElement('div');
+                element.innerHTML = quill.root.innerHTML;
+                html2pdf().from(element).save('contenido.pdf');
+            });
+
+            $('#addSignatureBtn').click(function() {
+                $('#passwordModal').modal('show');
+            });
+
+            $('#confirmPasswordBtn').click(function() {
+                const password = $('#password').val();
+                const signatureFile = $('#signatureFile')[0].files[0];
+
+                if (password === 'dara') {
+                    if (signatureFile) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const range = quill.getSelection();
+                            quill.insertEmbed(range.index, 'image', e.target.result);
+                            $('#passwordModal').modal('hide');
+                        };
+                        reader.readAsDataURL(signatureFile);
+                    } else {
+                        alert('Por favor, selecciona una imagen de firma.');
+                    }
+                } else {
+                    alert('Contraseña incorrecta.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

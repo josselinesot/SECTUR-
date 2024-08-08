@@ -1,0 +1,734 @@
+
+/*----------    Google Font Import - Poppins     ----------*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans", sans-serif;
+    
+
+}
+
+
+
+body{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: var(--primary-color);
+}
+
+
+:root {
+    --primary-color: #0E4BF1;
+    --panel-color: #FFF;
+    --text-color: #000;
+    --black-light-color: #707070;
+    --border-color: #e6e5e5;
+    --toggle-color: #DDD;
+    --box1-color: #4DA3FF;
+    --box2-color: #FFE6AC;
+    --box3-color: #E7D1FC;
+    --title-icon-color: #fff;
+    --card-bg-color: #FFD18E;
+    --special-color: #DD761C;
+    --orange-color:#E65C19;
+
+
+
+
+    --tran-05: all 0.5s ease;
+    --tran-03: all 0.3s ease;
+    --tran-03: all 0.2s ease;
+
+}
+
+body.dark {
+    --primary-color: #CCC;
+    --panel-color: #242526;
+    --text-color: #CCC;
+    --black-light-color: #CCC;
+    --border-color: #4D4C4C;
+    --toggle-color: #FFF;
+    --box1-color: #3A3B3C;
+    --box2-color: #3A3B3C;
+    --box3-color: #3A3B3C;
+    --title-icon-color: #CCC;
+    --card-bg-color: #939185;
+    --special-color:#CCC;
+    --orange-color:#CCC;
+
+}
+
+
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px;
+    background-color: var(--panel-color);
+    border-right:  2px solid var(--border-color);
+    transition: var(--tran-05);
+}
+
+nav.close{
+    width: 73px;
+}
+
+nav .logo-name{
+    display: flex;
+    align-items: center;
+}
+
+nav .logo-image{
+    display: flex;
+    justify-content: center;
+    min-width: 45px;
+    
+}
+
+nav .logo-image img{
+    min-width: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+    width: 65px;
+}
+
+nav .logo-name .logo_name{
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--special-color);
+    margin-left: 14px;
+    transition: var(--tran-05);
+}
+
+nav.close .logo_name{
+    opacity: 0;
+    pointer-events: none;
+}
+
+nav .menu-items{
+    margin-top: 30px;
+    height: calc(100% - 120px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.menu-items li{
+    list-style: none;
+    margin-left: -35px;
+}
+
+.menu-items li a{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    text-decoration: none;
+    position: relative;
+}
+
+
+
+.nav-links li a:hover:before{
+    content: "";
+    left: -1px;
+    position:absolute;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%; 
+    background-color: var(--special-color);
+}
+
+body.dark li a:hover:before{
+    background-color: var(--text-color);
+
+}
+.menu-items li a i{
+    font-size: 27px;
+    min-width: 45px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+}
+
+.menu-items li a .link-name{
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 8px;
+    color: var(--text-color);
+    transition: var(--tran-05);
+}
+
+nav.close li a .link-name{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.menu-items .logout-mode{
+    padding-top: 10px;
+    border-top: 2px solid var(--border-color);
+}
+
+
+.nav-links li a:hover i,
+.nav-links li a:hover .link-name{
+    color: var(--special-color);
+}
+
+body.dark .nav-links li a:hover i,
+body.dark .nav-links li a:hover .link-name{
+    color: var(--special-color);
+}
+
+.menu-items .mode{
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.menu-items .mode-toggle{
+    position: absolute;
+    right: 14px;
+    height: 50px;
+    min-width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.mode-toggle .switch{
+    position: relative;
+    display: inline-block;
+    border-radius: 25px;
+    height: 22px;
+    width: 40px;
+    background-color: var(--toggle-color);
+}
+
+.switch:before{
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 15px;
+    width: 15px;
+    background-color: var(--panel-color);
+    border-radius: 50%;
+    transition: var(--tran-03);
+}
+
+body.dark .switch:before{
+    left: 20px;
+}
+
+.dashboard{
+    background-color: var(--panel-color);
+    left: 250px;
+    position: relative;
+    flex: 1;
+    width: calc(100% - 250px);
+    padding: 10px 14px;
+    transition: var(--tran-05);
+}
+
+nav.close ~ .dashboard{
+    left: 73px;
+    width: calc(100% - 73px);
+}
+
+
+.dashboard .top{
+    position: fixed;
+    top: 0;
+    left: 250px;
+    display: flex;
+    width: calc(100% - 250px);
+    justify-content: space-between;
+    padding: 10px 14px;
+    background-color: var(--panel-color);
+    transition: var(--tran-05);
+}
+
+nav.close ~ .dashboard .top{
+    left: 73px;
+    width: calc(100% - 73px);
+    border-top: 3px solid var(--border-color);
+}
+
+.dashboard .top .sidebar-toggle{
+    font-size: 26px;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+.text {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 22px;
+    color: var(--text-color);
+}
+.admin-panel-img {
+    height: 70px; /* Ajusta este valor según el tamaño de la imagen */
+}
+.sidebar-toggle {
+    margin-right: 10px;
+}
+
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    padding: 6px 6px 14px 60px;
+    min-width: 200px;
+    box-shadow: var(--box-shadow);
+    z-index: 1;
+    border-top: 2px solid var(--border-color);
+}
+
+.dropdown-content a {
+    margin-bottom: -7px;
+    font-size: 17px;
+    color: var(--text-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    color: var(--special-color);
+}
+
+.nav.close .nav-links li .dropdown-content{
+    position: absolute;
+    left: 100%;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+nav.close .dropdown-content {
+    left: 7px;
+}
+
+
+@media (max-width: 1280px) {
+    nav{
+        width: 73px;
+    }
+    nav.close{
+        width: 250px;
+    }
+    nav .logo_name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav.close .logo_name{
+        opacity: 1;
+        pointer-events: auto;
+    }
+    nav li a .link-name{
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav.close li a .link-name{
+        opacity: 1;
+        pointer-events: auto;
+    }
+    nav ~ .dashboard{
+        left: 73px;
+        width: calc(100% - 73px);
+    }
+    nav.close ~ .dashboard{
+        left: 250px;
+        width: calc(100% - 250px);
+    }
+    nav ~ .dashboard .top{
+        left: 73px;
+        width: calc(100% - 73px);
+    }
+    nav.close ~ .dashboard .top{
+        left: 250px;
+        width: calc(100% - 250px);
+    }
+    
+    
+}
+
+@media (max-width: 768px) {
+    nav {
+        width: 73px;
+    }
+    nav.close {
+        width: 100%;
+    }
+    nav .logo_name {
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav.close .logo_name {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    nav li a .link-name {
+        opacity: 0;
+        pointer-events: none;
+    }
+    nav.close li a .link-name {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    nav ~ .dashboard {
+        left: 73px;
+        width: calc(100% - 73px);
+    }
+    nav.close ~ .dashboard {
+        left: 0;
+        width: 100%;
+    }
+    nav ~ .dashboard .top {
+        left: 73px;
+        width: calc(100% - 73px);
+    }
+    nav.close ~ .dashboard .top {
+        left: 0;
+        width: 100%;
+    }
+    .dashboard .top .sidebar-toggle {
+        display: none;
+    }
+}
+
+@media (max-width: 320px) {
+    nav ~ .dashboard {
+        left: 73px;
+        width: calc(220% - 73px);
+    }
+    nav.close ~ .dashboard {
+        left: 0;
+        width: 100%;
+    }
+}
+
+
+
+@media (max-width: 480px) {
+    nav ~ .dashboard {
+        left: 73px;
+        width: calc(132% - 73px);
+    }
+        nav.close ~ .dashboard {
+        left: 0;
+        width: 100%;
+    }
+}
+
+
+
+
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.username {
+    font-size: 22px;
+    color: var(--special-color);
+    margin-top: 80px;
+}
+.search-box1 {
+    display: flex;
+    align-items: center;
+    margin-top: 80px;
+}
+.search-box1 form {
+    display: flex;
+    align-items: center;
+}
+
+.search-box1 input {
+    padding: 8px; /* Reduce el padding */
+    margin-right: 5px; /* Reduce el margen */
+    border-radius: 5px;
+    width: 190px; /* Reduce el ancho del input */
+    font-size: 0.9em; /* Reduce el tamaño de la fuente */
+}
+
+.search-box1 button {
+    padding: 6px 6px;
+    font-size: 0.9em;
+}
+
+
+
+
+/* Modal styles */
+.modalaños{
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-eventos {
+    background-color: var(--panel-color);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
+}
+
+.modal-eventos ul {
+    list-style: none;
+    padding: 0;
+}
+
+.modal-eventos ul li {
+    margin-bottom: 10px;
+}
+
+.modal-eventos ul li a {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--text-color);
+    text-decoration: none;
+    display: block;
+    padding: 12px 16px;
+    text-align: center;
+}
+
+.modal-eventos ul li a:hover {
+    color: var(--special-color);
+}
+
+.close {
+    color: var(--text-color);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--special-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+/*----------    FORMULARIO  ----------*/
+
+
+.pdf-container {
+    margin-top: 30px;
+    padding: 20px;
+    font-size: 22px;
+    color: var(--text-color);
+}
+
+.pdf-container a {
+    font-size: 20px;
+    color: var(--text-color);
+}
+
+.pdf-container input[type="file"] {
+    margin-bottom: 15px;
+}
+
+ul.pdf-list {
+
+    padding: 0;
+    margin-left: 0px;
+
+}
+
+ul.pdf-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+ul.pdf-list li a {
+    margin-right: 10px;
+    font-size: 18px;
+    /* Add some space between the download link and the delete icon */
+}
+
+ul.pdf-list li form {
+    display: inline;
+    /* Ensure the form stays inline with the text */
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+}
+
+ul.pdf-list li .btn-link {
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+ul.pdf-list li .btn-link i {
+    font-size: 1.2rem;
+}
+
+/* Agrega este estilo al final de tu archivo CSS */
+
+.pdf-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Agrega este estilo al final de tu archivo CSS */
+
+.pdf-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.pdf-actions .btn-link {
+    margin-right: 40px;
+    text-decoration: none;
+}
+
+.pdf-list .pdf-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    /* Ajusta este valor según sea necesario */
+
+}
+
+
+
+
+/* Estilos para la lista de PDFs */
+.pdf-container {
+
+    padding: 5px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+.pdf-item {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    margin-top: 40px;
+}
+
+.pdf-link {
+
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+
+.pdf-name {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+
+
+.pdf-details {
+    text-align: left;
+    /* Alinea el texto a la izquierda */
+    padding: 10px;
+    /* Agrega algo de padding si es necesario */
+    margin: 10px 0;
+    /* Margen superior e inferior */
+    font-size: 20px;
+}
+
+
+
+.pdf-details p {
+    margin: 10px 0;
+    font-size: 17px;
+    overflow: hidden;
+    white-space: normal; 
+    max-width: 300px;
+    word-wrap: break-word; 
+}
+
+.pdf-actions .btn-link .uil-file-download {
+    color: var(--text-color);
+}
+
+.pdf-actions .btn-link .uil-trash-alt{
+    color: var(--text-color);
+}
+
+
+
+.pdf-item .pdf-icon{
+    margin-left: 30px;
+    margin-right: 40px;
+}
+
+
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: var(--orange-color);
+    color: var(--panel-color);
+    cursor: pointer;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    transition: all 0.5s ease;
+}
+
+input[type="submit"]:hover {
+    letter-spacing: 3px;
+    background-color: var(--orange-color);
+    color: var(--panel-color);
+}
+
+input[type="submit"]:active {
+    letter-spacing: 3px;
+    background-color: var(--orange-color);
+    color: var(--panel-color);
+    transform: translateY(10px);
+    transition: 100ms;
+}
