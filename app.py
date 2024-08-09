@@ -299,5 +299,13 @@ def save_text():
     # Aquí puedes guardar el texto en la base de datos o realizar alguna acción con él
     return {'message': 'Texto guardado exitosamente'}
 
+@app.route('/contenido')
+def contenido():
+    if 'username' in session:
+        # Recupera el usuario desde la base de datos si es necesario
+        user = users.find_one({'username': session['username']})
+        return render_template('contenido.html', username=session['username'], user=user)
+    return redirect(url_for('login'))
+
 if __name__ == "__main__":
     app.run(debug=True)

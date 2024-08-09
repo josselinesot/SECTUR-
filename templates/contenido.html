@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://bootswatch.com/5/united/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="../static/home.css">
+    <title>Contenido</title>
+
+    <!--------  Inconscount CSS ------->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+</head>
+
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="/static/images/logo.png" alt="">
+            </div>
+
+            <span class="logo_name">Backup Sectur</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="#">
+                        <i class="uil uil-estate"></i>
+                        <span class="link-name">Inicio</span>
+                    </a></li>
+                <li><a href="#">
+                        <i class="uil uil-files-landscapes"></i>
+                        <span class="link-name">Contenido</span>
+                    </a></li>
+                <li><a href="/editor">
+                    <i class="uil uil-pen"></i>
+                        <span class="link-name">Redacción</span>
+                    </a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">
+                        <i class="uil uil-file-alt"></i>
+                        <span class="link-name">Eventos</span>
+                    </a>
+                    <ul class="dropdown-content event-list">
+                        <li><a href="{{ url_for('user_events_2022', username=username) }}">2022</a></li>
+                        <li><a href="{{ url_for('user_events_2023', username=username) }}">2023</a></li>
+                        <li><a href="{{ url_for('user_events_2024', username=username) }}">2024</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="logout-mode">
+                <li><a href="/prin">
+                        <i class="uil uil-signout"></i>
+                        <span class="link-name">Logout</span>
+                    </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                        <span class="link-name">Dark Mode</span>
+                    </a>
+
+                    <div class="mode-toggle">
+                        <span class="switch"></span>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+            <span class="text">Secretaría De Turismo Municipal de Acapulco</span>
+            <img class="admin-panel-img" src="/static/images/turismo.png" alt="img">
+            
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title-container">
+                    <div class="username">
+                        ¡Dirección de {{ username }}!
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="contenido">
+                <h3 class="card mision">Misión</h3>
+                <a>Fortalecer y mejorar la dependencia para activar con rapidez en la forma de decisiones importantes
+                    para alcanzar los objetivos institucionales. Fortalecer y mejorar la gestión realizada en el servicio
+                    para el turista. Ofrecer servicios de transporte terrestre, seguro y puntual al turista local, nacional
+                    y extranjero.
+                </a>
+
+                <h3 class="card vision">Visión</h3>
+                <a>Realizar con eficiencia las gestiones necesarias para detonar la inversión, la diversidad de los 
+                    servicios turísticos y la generación de empleos, contener con una oferta de destinos turísticos 
+                    competitivo para impulsar el desarrollo del puerto y promoverlo como un destino turístico competitivo. 
+                    Lograr que el puerto se ubique como el principal destino turístico en la zona Sur del país, 
+                    posicionarlo como un destino turístico competitivo y más atractivo que genere inversión y 
+                    desarrollo sostenible en beneficio de los acapulqueños. 
+                </a>
+            </div>
+
+    
+
+            <!-- Modal para los años de eventos -->
+            <div id="eventModal" class="modalaños">
+                <div class="modal-eventos">
+                    <span class="close">&times;</span>
+                    <ul>
+                        <li><a href="{{ url_for('user_events_2022', username=username) }}">2022</a></li>
+                        <li><a href="{{ url_for('user_events_2023', username=username) }}">2023</a></li>
+                        <li><a href="{{ url_for('user_events_2024', username=username) }}">2024</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+
+    </section>
+
+    
+
+
+
+    <script src="../static/script.js"></script>
+</body>
+
+</html>

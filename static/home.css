@@ -744,3 +744,43 @@ input[type="submit"]:active {
     transform: translateY(10px);
     transition: 100ms;
 }
+
+.contenido {
+    display: flex;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    flex-direction: column;
+    gap: 20px; /* Espacio entre las tarjetas */
+}
+
+.card {
+    background-color: #fff; /* Fondo blanco para la tarjeta */
+    border-radius: 15px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para la tarjeta */
+    padding: 20px; /* Espacio interno */
+    border: 1px solid #ddd; /* Borde ligero alrededor de la tarjeta */
+}
+
+.card h3 {
+    margin-top: 0; /* Eliminar margen superior del título */
+    font-size: 1.5em; /* Tamaño del texto del título */
+    color: #333; /* Color del texto del título */
+}
+
+.card p {
+    margin: 10px 0 0 0; /* Espacio interno del párrafo */
+    color: #555; /* Color del texto del párrafo */
+    line-height: 1.6; /* Altura de línea para mejor legibilidad */
+}
+
+.contenido a{
+    text-align: justify;
+}
+
+.card.mision {
+    background-color: var(--box2-color); /* Color de fondo para la tarjeta de misión */
+}
+
+.card.vision {
+    background-color: var(--box2-color); /* Color de fondo para la tarjeta de visión */
+}
