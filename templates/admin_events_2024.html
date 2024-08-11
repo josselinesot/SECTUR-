@@ -36,6 +36,7 @@
                         <span class="link-name">Eventos</span>
                     </a>
                     <ul class="dropdown-content">
+                        <li><a href="{{ url_for('admin_events_2021', username=username) }}">2021</a></li>
                         <li><a href="{{ url_for('admin_events_2022', username=username) }}">2022</a></li>
                         <li><a href="{{ url_for('admin_events_2023', username=username) }}">2023</a></li>
                         <li><a href="{{ url_for('admin_events_2024', username=username) }}">2024</a></li>
@@ -76,7 +77,7 @@
             <div class="overview">
                 <div class="title-container">
                     <div class="username">
-                        ¡Dirección de {{ username }}!
+                        ¡Perfil de {{ username }}!
                     </div>
                     <div class="search-box1">
                         <form action="{{ url_for('search_pdfs') }}" method="GET">
@@ -143,6 +144,7 @@
                     <div class="modal-eventos">
                         <span class="close">&times;</span>
                         <ul>
+                            <li><a href="{{ url_for('admin_events_2021', username=username) }}">2021</a></li>
                             <li><a href="{{ url_for('admin_events_2022', username=username) }}">2022</a></li>
                             <li><a href="{{ url_for('admin_events_2023', username=username) }}">2023</a></li>
                             <li><a href="{{ url_for('admin_events_2024', username=username) }}">2024</a></li>
