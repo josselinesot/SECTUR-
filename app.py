@@ -114,18 +114,27 @@ def upload_pdf():
             return redirect(url_for('home'))
     return redirect(url_for('login'))
 
-
 @app.route('/admin/login', methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password'].encode('utf-8')
-        admin_user = users.find_one({'username': 'admin'})
-        if admin_user and admin_user['email'] == username and bcrypt.checkpw(password, admin_user['password']):
-            session['admin'] = True
-            return redirect(url_for('admin_dashboard'))
+
+        # Permitir acceso si el correo electrónico es uno de los administradores
+        admin_emails = ['davidhoracio@gmail.com', 'admin@gmail.com', 'orozcomu@gmail.com', 'ulisesalme@gmail.com']
+        if username in admin_emails:
+            admin_user = users.find_one({'email': username})
+            if admin_user and bcrypt.checkpw(password, admin_user['password']):
+                session['admin'] = True
+                return redirect(url_for('admin_dashboard'))
+        
+        # Verificar otros usuarios
+        user = users.find_one({'$or': [{'username': username}, {'email': username}]})
+        if user and bcrypt.checkpw(password, user['password']):
+            session['username'] = user['username']
+            return redirect(url_for('home'))
         else:
-            flash('Datos incorrectos. Por favor, verifica tu correo o contraseña.', 'error')
+            flash('Datos incorrectos. Por favor, verifica tu usuario, correo o contraseña.', 'error')
     return render_template('admin_login.html')
 
 @app.route('/admin_dashboard')
