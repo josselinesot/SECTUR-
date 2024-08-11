@@ -215,6 +215,28 @@ def delete_pdf(file_id):
 
     return redirect(url_for('home'))
 
+@app.route('/admin/events/2021/<username>')
+def admin_events_2021(username):
+    if 'admin' not in session:
+        return redirect(url_for('admin_login'))
+    
+    user = users.find_one({'username': username})
+    if user:
+        user_files = [pdf for pdf in user.get('pdfs', []) if pdf.get('year') == '2021']
+        return render_template('admin_events_2021.html', username=username, user_files=user_files)
+    
+    return render_template('admin_events_2021.html', username=username, user_files=[])
+
+@app.route('/user/events/2021/<username>')
+def user_events_2021(username):
+    if 'username' in session:
+        user = users.find_one({'username': session['username']})
+        if user:
+            user_pdfs = [pdf for pdf in user.get('pdfs', []) if pdf.get('year') == '2021']
+            return render_template('2021.html', username=session['username'], user_pdfs=user_pdfs)
+    
+    return redirect(url_for('login'))
+
 @app.route('/admin/events/2022/<username>')
 def admin_events_2022(username):
     if 'admin' not in session:
