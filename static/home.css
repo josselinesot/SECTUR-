@@ -705,13 +705,13 @@ ul.pdf-list li .btn-link i {
 }
 
 .pdf-actions .btn-link .uil-trash-alt{
-    color: var(--text-color);
+    color: var(red);
 }
 
 
 
 .pdf-item .pdf-icon{
-    margin-left: 30px;
+    margin-left: 70px;
     margin-right: 40px;
 }
 
