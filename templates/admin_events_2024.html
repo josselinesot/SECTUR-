@@ -99,7 +99,7 @@
                     <ul class="pdf-list">
                         {% for pdf in user_files %}
                         <li class="pdf-item">
-                            <span class="pdf-icon"><i class="uil uil-file-alt" style="font-size: 35px;"></i></span>
+                            <span class="pdf-icon"><i class="uil uil-file-alt" style="font-size: 52px;"></i></span>
                             <div class="pdf-details">
                                 <p><strong>Archivo:</strong> {{ pdf['filename'] }}</p>
                                 <p><strong>Descripción:</strong> {{ pdf['description'] }}</p>
@@ -107,7 +107,7 @@
                             </div>
                             <div class="pdf-actions">
                                 <a href="{{ url_for('download_pdf', file_id=pdf['file_id']) }}" class="btn btn-link">
-                                    <i class="uil uil-file-download" style="font-size: 35px;"></i>
+                                    <i class="uil uil-file-download" style="font-size: 52px;"></i>
                                 </a>
                             </div>
                         </li>
