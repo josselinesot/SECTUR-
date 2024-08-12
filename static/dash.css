@@ -516,9 +516,9 @@ nav.close .dropdown-content {
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease 0s;
     outline: none;
-    width: 170px;
+    width: 190px;
     /* Incrementar el ancho */
-    height: 170px;
+    height: 220px;
     /* Incrementar la altura */
 }
 
