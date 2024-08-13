@@ -121,7 +121,7 @@ def admin_login():
         password = request.form['password'].encode('utf-8')
 
         # Permitir acceso si el correo electrónico es uno de los administradores
-        admin_emails = ['davidhoracio@gmail.com', 'admin@gmail.com', 'orozcomu@gmail.com', 'ulisesalme@gmail.com']
+        admin_emails = ['davidhoracio@gmail.com','secreturismo@gmail.com', 'admin@gmail.com', 'orozcomu@gmail.com', 'coordinacionadmi@gmail.com', 'ulisesalme@gmail.com', 'secreparticular@gmail.com']
         if username in admin_emails:
             admin_user = users.find_one({'email': username})
             if admin_user and bcrypt.checkpw(password, admin_user['password']):
