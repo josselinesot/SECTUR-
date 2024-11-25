@@ -338,5 +338,42 @@ def contenido():
         return render_template('contenido.html', username=session['username'], user=user)
     return redirect(url_for('login'))
 
+@app.route('/admin/update_status/<file_id>', methods=['POST'])
+def update_status(file_id):
+    if 'admin' not in session:
+        flash('Acceso denegado. Debes ser administrador para realizar esta acción.', 'error')
+        return redirect(url_for('admin_dashboard'))
+
+    new_status = request.form.get('status')
+    if new_status not in ['pendiente', 'revisado', 'aprobado']:
+        flash('Estado inválido.', 'error')
+        return redirect(url_for('admin_dashboard'))
+    
+    try:
+        # Actualiza el estado en los metadatos del archivo en GridFS
+        fs_file = fs.find_one({'_id': ObjectId(file_id)})
+        if not fs_file:
+            flash('Archivo no encontrado.', 'error')
+            return redirect(url_for('admin_dashboard'))
+
+        fs_file.metadata['status'] = new_status
+        fs_file.metadata.pop('_id', None)  # Evitar conflictos con la clave _id
+        fs.GridFS_files.update_one(
+            {'_id': ObjectId(file_id)},
+            {'$set': {'metadata': fs_file.metadata}}
+        )
+
+        # Actualiza también en la colección de usuarios
+        users.update_one(
+            {'pdfs.file_id': ObjectId(file_id)},
+            {'$set': {'pdfs.$.status': new_status}}
+        )
+
+        flash('Estado del archivo actualizado con éxito.', 'success')
+    except Exception as e:
+        flash(f'Error al actualizar el estado: {str(e)}', 'error')
+    
+    return redirect(url_for('admin_dashboard'))
+
 if __name__ == "__main__":
     app.run(debug=True)
