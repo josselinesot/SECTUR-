@@ -284,7 +284,8 @@ nav.close ~ .dashboard .top{
     flex-grow: 1;
     text-align: center;
     font-size: 22px;
-    color: var(--text-color);
+    font-weight: bold;
+    color: var(--special-color);
 }
 .admin-panel-img {
     height: 70px; /* Ajusta este valor según el tamaño de la imagen */
@@ -455,7 +456,7 @@ nav.close .dropdown-content {
     margin-top: 20px;
 }
 .username {
-    font-size: 22px;
+    font-size: 19px;
     color: var(--special-color);
     margin-top: 80px;
 }
@@ -547,61 +548,6 @@ nav.close .dropdown-content {
 
 
 
-/*----------    FORMULARIO  ----------*/
-
-
-.pdf-container {
-    margin-top: 30px;
-    padding: 20px;
-    font-size: 22px;
-    color: var(--text-color);
-}
-
-.pdf-container a {
-    font-size: 20px;
-    color: var(--text-color);
-}
-
-.pdf-container input[type="file"] {
-    margin-bottom: 15px;
-}
-
-ul.pdf-list {
-
-    padding: 0;
-    margin-left: 0px;
-
-}
-
-ul.pdf-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-ul.pdf-list li a {
-    margin-right: 10px;
-    font-size: 18px;
-    /* Add some space between the download link and the delete icon */
-}
-
-ul.pdf-list li form {
-    display: inline;
-    /* Ensure the form stays inline with the text */
-    margin: 0;
-    padding: 0;
-    font-size: 18px;
-}
-
-ul.pdf-list li .btn-link {
-    margin-right: 10px;
-    text-decoration: none;
-}
-
-ul.pdf-list li .btn-link i {
-    font-size: 1.2rem;
-}
 
 /* Agrega este estilo al final de tu archivo CSS */
 
@@ -638,97 +584,107 @@ ul.pdf-list li .btn-link i {
 
 
 /* Estilos para la lista de PDFs */
-.pdf-container {
-
-    padding: 5px;
-    margin-top: 20px;
-    text-align: center;
+.pdf-lista-pdf {
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%; /* Ocupa todo el ancho */
+    margin: 0; /* Elimina márgenes */
 }
 
+.pdf-lista-pdf a {
+    font-size: 19px;
+
+    margin-bottom: 20px;
+    color: #333;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.pdf-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
 
 .pdf-item {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
     margin-bottom: 10px;
-    padding-bottom: 10px;
-    margin-top: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ocupa todo el ancho */
+    
 }
 
-.pdf-link {
-
-    text-decoration: none;
-    transition: color 0.3s;
+.pdf-icon i {
+    color: #DD761C;
+    margin-right: 15px;
+    font-size: 32px !important;
 }
 
-
-.pdf-name {
-    font-weight: bold;
-    font-size: 20px;
+.pdf-actions .btn i {
+    font-size: 32px !important;
 }
-
-
 
 
 .pdf-details {
-    text-align: left;
-    /* Alinea el texto a la izquierda */
-    padding: 10px;
-    /* Agrega algo de padding si es necesario */
-    margin: 10px 0;
-    /* Margen superior e inferior */
-    font-size: 20px;
+    flex-grow: 1;
 }
-
-
 
 .pdf-details p {
-    margin: 10px 0;
-    font-size: 17px;
-    overflow: hidden;
-    white-space: normal; 
-    max-width: 300px;
-    word-wrap: break-word; 
+    margin: 5px 0;
+    color: #333;
+    font-size: 15px;
 }
 
-.pdf-actions .btn-link .uil-file-download {
-    color: var(--text-color);
+.pdf-details form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
 }
 
-.pdf-actions .btn-link .uil-trash-alt{
-    color: var(--text-color);
+.pdf-details select {
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 0.9em;
 }
 
-
-
-.pdf-item .pdf-icon{
-    margin-left: 30px;
-    margin-right: 40px;
-}
-
-
-
-input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
+.pdf-details button {
+    padding: 6px 10px;
+    font-size: 0.9em;
+    background-color: #DD761C;
+    color: #fff;
     border: none;
     border-radius: 4px;
-    box-sizing: border-box;
-    background-color: var(--orange-color);
-    color: var(--panel-color);
     cursor: pointer;
-    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
-    transition: all 0.5s ease;
+    transition: background-color 0.3s ease;
 }
 
-input[type="submit"]:hover {
-    letter-spacing: 3px;
-    background-color: var(--orange-color);
-    color: var(--panel-color);
+.pdf-details button:hover {
+    background-color: #E65C19;
 }
 
-input[type="submit"]:active {
-    letter-spacing: 3px;
-    background-color: var(--orange-color);
-    color: var(--panel-color);
-    transform: translateY(10px);
-    transition: 100ms;
+.pdf-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pdf-actions .btn {
+    padding: 8px;
+    font-size: 1.2em;
+    color: #DD761C;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.pdf-actions .btn:hover {
+    color: #E65C19;
 }

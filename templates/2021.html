@@ -93,7 +93,7 @@
                     </div>
                 </div>
 
-                <div class="pdf-container">
+                <div class="pdf-lista-pdf">
                     <a>EVENTOS 2021</a>
                     {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
@@ -105,19 +105,21 @@
                     <ul class="pdf-list">
                         {% for pdf in user_pdfs %}
                         <li class="pdf-item">
-                            <span class="pdf-icon"><i class="uil uil-file-alt" style="font-size: 52px;"></i></span>
+                            <span class="pdf-icon"><i class="uil uil-file-alt"></i></span>
                             <div class="pdf-details">
                                 <p><strong>Archivo:</strong> {{ pdf['filename'] }}</p>
                                 <p><strong>Descripción:</strong> {{ pdf['description'] }}</p>
                                 <p><strong>Subido en:</strong> {{ pdf['upload_time'] }}</p>
+                                <p class="estado-text">Estado: {{ pdf.status or 'pendiente' }}</p>
+                                <a href="{{ url_for('download_pdf', file_id=pdf.file_id) }}"></a>
                             </div>
                             <div class="pdf-actions">
                                 <a href="{{ url_for('download_pdf', file_id=pdf['file_id']) }}" class="btn btn-link">
-                                    <i class="uil uil-file-download" style="font-size: 52px;"></i>
+                                    <i class="uil uil-file-download"></i>
                                 </a>
                                 <button class="btn btn-link" onclick="confirmDelete('{{ pdf['file_id'] }}')">
                                     <!-- Aquí se utiliza pdf.file_id -->
-                                    <i class="uil uil-trash-alt" style="font-size: 52px;"></i>
+                                    <i class="uil uil-trash-alt"></i>
                                 </button>
                                 </form>
 

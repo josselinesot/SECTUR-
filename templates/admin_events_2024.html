@@ -87,7 +87,7 @@
                     </div>
                 </div>
 
-                <div class="pdf-container">
+                <div class="pdf-lista-pdf">
                     <a>EVENTOS 2024</a>
                     {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
@@ -104,6 +104,8 @@
                                 <p><strong>Archivo:</strong> {{ pdf['filename'] }}</p>
                                 <p><strong>Descripción:</strong> {{ pdf['description'] }}</p>
                                 <p><strong>Subido en:</strong> {{ pdf['upload_time'] }}</p>
+                                <p class="estado-text">Estado: {{ pdf.status or 'pendiente' }}</p>
+                                <a href="{{ url_for('download_pdf', file_id=pdf.file_id) }}"></a>
                             </div>
                             <div class="pdf-actions">
                                 <a href="{{ url_for('download_pdf', file_id=pdf['file_id']) }}" class="btn btn-link">
