@@ -358,7 +358,7 @@ def update_status(file_id):
 
         fs_file.metadata['status'] = new_status
         fs_file.metadata.pop('_id', None)  # Evitar conflictos con la clave _id
-        fs.GridFS_files.update_one(
+        fs._GridFS__files.update_one(
             {'_id': ObjectId(file_id)},
             {'$set': {'metadata': fs_file.metadata}}
         )
@@ -374,6 +374,7 @@ def update_status(file_id):
         flash(f'Error al actualizar el estado: {str(e)}', 'error')
     
     return redirect(url_for('admin_dashboard'))
+
 
 if __name__ == "__main__":
     app.run(debug=True)
