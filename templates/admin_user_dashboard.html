@@ -91,8 +91,8 @@
                     </div>
                 </div>
 
-                <div class="pdf-container">
-                    <a>EVENTOS </a>
+                <div class="pdf-lista-pdf">
+                    <a>EVENTOS</a>
                     {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
                     {% for category, message in messages %}
@@ -103,15 +103,24 @@
                     <ul class="pdf-list">
                         {% for pdf in user_files %}
                         <li class="pdf-item">
-                            <span class="pdf-icon"><i class="uil uil-file-alt" style="font-size: 52px;"></i></span>
+                            <span class="pdf-icon"><i class="uil uil-file-alt"></i></span>
                             <div class="pdf-details">
                                 <p><strong>Archivo:</strong> {{ pdf['filename'] }}</p>
                                 <p><strong>Descripción:</strong> {{ pdf['description'] }}</p>
                                 <p><strong>Subido en:</strong> {{ pdf['upload_time'] }}</p>
+                                Estado: {{ pdf.status or 'pendiente' }}
+                                <form action="{{ url_for('update_status', file_id=pdf.file_id) }}" method="post">
+                                <select name="status">
+                                 <option value="pendiente" {% if pdf.status == 'pendiente' %}selected{% endif %}>Pendiente</option>
+                                 <option value="revisado" {% if pdf.status == 'revisado' %}selected{% endif %}>Revisado</option>
+                                 <option value="aprobado" {% if pdf.status == 'aprobado' %}selected{% endif %}>Aprobado</option>
+                                 </select>
+                                 <button type="submit">Actualizar</button>
+                                </form>
                             </div>
                             <div class="pdf-actions">
                                 <a href="{{ url_for('download_pdf', file_id=pdf['file_id']) }}" class="btn btn-link">
-                                    <i class="uil uil-file-download" style="font-size: 52px;"></i>
+                                    <i class="uil uil-file-download"></i>
                                 </a>
                                
                             </div>

@@ -1,4 +1,4 @@
-/*----------    Google Font Import - Poppins     ----------*/
+/----------    Google Font Import - Poppins     ----------/
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 
@@ -58,7 +58,7 @@ body.dark {
     --box2-color: #3A3B3C;
     --box3-color: #3A3B3C;
     --title-icon-color: #CCC;
-    --card-bg-color: #747264;
+    --card-bg-color: #a09e91;
     --special-color: #CCC;
     --orange-color: #CCC;
     --text-black: #FFF;
@@ -287,7 +287,8 @@ nav.close~.dashboard .top {
     flex-grow: 1;
     text-align: center;
     font-size: 22px;
-    color: var(--text-color);
+    color: var(--special-color);
+    font-weight: bold;
 }
 
 .admin-panel-img {
@@ -482,71 +483,63 @@ nav.close .dropdown-content {
     }
 }
 
-
-
-
-
-
-
+/* Estilos del contenedor de las tarjetas */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .user-cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 60px;
-    justify-content: center;
-    margin-top: 90px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 900px; /* Limita el ancho del contenedor */
+    margin: auto;
 }
 
-
-
+/* Estilo de las tarjetas individuales */
 .user-card {
-    color: var(--text-black);
-    background-color: var(--card-bg-color);
-    border: none;
-    border-radius: 8px;
     display: flex;
     flex-direction: column;
-    /* Para apilar icono y nombre verticalmente */
     align-items: center;
-    /* Centrar verticalmente */
-    justify-content: center;
-    /* Centrar horizontalmente */
-    padding: 40px;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease 0s;
-    outline: none;
-    width: 190px;
-    /* Incrementar el ancho */
-    height: 220px;
-    /* Incrementar la altura */
+    cursor: pointer;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
 }
 
-.user-card a {
-    text-decoration: none;
-
-    font-size: 20px;
-    /* Incrementar el tamaño de la fuente */
-    margin-top: 10px;
-    /* Espacio entre el icono y el nombre */
-}
-
-.user-cards-container img {
-    width: 60px;
-
-
-}
-
+/* Efecto hover para las tarjetas */
 .user-card:hover {
-    transform: translateY(-10px);
-
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-.user-card:active {
-    transform: translateY(-1px);
-
+/* Imagen del usuario */
+.user-card img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 15px;
+    transition: box-shadow 0.3s ease;
 }
 
+/* Nombre de usuario */
+.user-card a {
+    font-size: 17px;
+    color: #333333;
+    text-decoration: none;
+    margin-top: 8px;
+    transition: color 0.3s ease;
+}
+
+.user-card a:hover {
+    color: #007bff; /* Cambia el color en hover */
+}
 
 
 /* Ajusta el margen superior del contenedor para moverlo hacia arriba */
