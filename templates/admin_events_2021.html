@@ -104,6 +104,15 @@
                                 <p><strong>Archivo:</strong> {{ pdf['filename'] }}</p>
                                 <p><strong>Descripción:</strong> {{ pdf['description'] }}</p>
                                 <p><strong>Subido en:</strong> {{ pdf['upload_time'] }}</p>
+                                Estado: {{ pdf.status or 'pendiente' }}
+                                <form action="{{ url_for('update_status', file_id=pdf.file_id) }}" method="post">
+                                <select name="status">
+                                 <option value="pendiente" {% if pdf.status == 'pendiente' %}selected{% endif %}>Pendiente</option>
+                                 <option value="revisado" {% if pdf.status == 'revisado' %}selected{% endif %}>Revisado</option>
+                                 <option value="aprobado" {% if pdf.status == 'aprobado' %}selected{% endif %}>Aprobado</option>
+                                 </select>
+                                 <button type="submit">Actualizar</button>
+                                </form>
                             </div>
                             <div class="pdf-actions">
                                 <a href="{{ url_for('download_pdf', file_id=pdf['file_id']) }}" class="btn btn-link">
